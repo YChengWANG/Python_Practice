@@ -1,3 +1,6 @@
+from Cal_Time import execute_time
+
+@execute_time
 def bubble_sort(li):    # O(n^2)
     for i in range(len(li)-1):
         sign = False
@@ -8,7 +11,7 @@ def bubble_sort(li):    # O(n^2)
         if sign == False:
             return
 
-
+@execute_time
 def select_sort(li):   # O(n^2)
     for i in range(len(li)-1):
         tmp = i
@@ -17,7 +20,7 @@ def select_sort(li):   # O(n^2)
                 tmp = j
         li[i],li[tmp] = li[tmp],li[i]
 
-
+@execute_time
 def insert_sort(li):    # O(n^2)
     for i in range(1,len(li)):
         tmp = li[i]
@@ -30,7 +33,7 @@ def insert_sort(li):    # O(n^2)
 
 def partition(li,left,right):
     tmp = li[left]
-    while left<right:
+    while left<=right:
         while left<right and li[right]>=tmp:
             right -= 1
         li[left] = li[right]
@@ -41,11 +44,17 @@ def partition(li,left,right):
     return left
         
     
-def quick_sort(li,left,right):
+def _quick_sort(li,left,right):
     if left < right:
         mid = partition(li,left,right)
-        quick_sort(li,left,mid-1)
-        quick_sort(li,mid+1,right)
+        _quick_sort(li,left,mid-1)
+        _quick_sort(li,mid+1,right)
+
+@execute_time
+def quick_sort(li):
+    left = 0
+    right = len(li)-1
+    _quick_sort(li,left,right)        
     
 
 def sift(li,low,high):
@@ -63,7 +72,7 @@ def sift(li,low,high):
             break
     li[i] = tmp
     
-
+@execute_time
 def heap_sort(li):
     n = len(li)
     for i in range((n-2)//2,-1,-1):
