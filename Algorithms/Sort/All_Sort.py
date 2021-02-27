@@ -33,7 +33,7 @@ def insert_sort(li):    # O(n^2)
 
 def partition(li,left,right):
     tmp = li[left]
-    while left<=right:
+    while left<right:
         while left<right and li[right]>=tmp:
             right -= 1
         li[left] = li[right]
@@ -52,9 +52,7 @@ def _quick_sort(li,left,right):
 
 @execute_time
 def quick_sort(li):
-    left = 0
-    right = len(li)-1
-    _quick_sort(li,left,right)        
+    _quick_sort(li,0,len(li)-1)        
     
 
 def sift(li,low,high):
