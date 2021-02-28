@@ -78,3 +78,33 @@ def heap_sort(li):
     for i in range(n-1,-1,-1):
         li[0],li[i] = li[i],li[0]
         sift(li,0,i-1)
+
+def merge(li,low,mid,high):
+    i = low
+    j = mid+1
+    litmp = []
+    while i <= mid and j <= high:
+        if li[i]<li[j]:
+            litmp.append(li[i])
+            i += 1
+        else:
+            litmp.append(li[j])
+            j += 1
+    while i <= mid:
+        litmp.append(li[i])
+        i += 1
+    while j <= high:
+        litmp.append(li[j])
+        j += 1
+    return litmp
+
+def _merge_sort(li,low,high):
+    if low<high:
+        mid = (low+high)//2
+        _merge_sort(li,low,mid)
+        _merge_sort(li,mid+1,high)
+        merge(li,low,mid,high)
+        
+@execute_time
+def merge_sort(li):
+    _merge_sort(li,0,len(li)-1)
