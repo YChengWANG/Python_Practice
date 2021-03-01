@@ -23,6 +23,6 @@ dirs = [
     lambda x,y: (x,y-1)
 ]
 
-stack = []
-stack.append((2,2))
-print(stack[-1])
+def Maze_dfs(x1,y1,x2,y2):
+    CurNode = Stack()
+
