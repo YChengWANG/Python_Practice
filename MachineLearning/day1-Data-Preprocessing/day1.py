@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd 
 
 # Import the Data set
-csv_path = 'MachineLearning\day1\Data.csv'
+csv_path = 'MachineLearning\day1-Data-Preprocessing\Data.csv'
 dataset = pd.read_csv(csv_path)
 X = dataset.iloc[:,:-1].values
 Y = dataset.iloc[:,3].values
