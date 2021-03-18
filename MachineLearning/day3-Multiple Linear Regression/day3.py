@@ -7,9 +7,18 @@ dataset = pd.read_csv(csv_path)
 X = dataset.iloc[:,:4].values
 y = dataset.iloc[:,-1].values
 #print(X,y,sep='\n\n')
-from sklearn.preprocessing import LabelEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import LabelEncoder,OneHotEncoder
 le = LabelEncoder()
-X[:,1] = le.fit_transform(X[:,1])
+X = X[:,1:]
+X[:,0] = le.fit_transform(X[:,0])
+# print(X)
+# oe = OneHotEncoder()
+# X = oe.fit_transform(X).toarray()
+encoder = ColumnTransformer(
+    [('onehotencoder',OneHotEncoder(),[0])],remainder="passthrough"
+)
+X = encoder.fit_transform(X)
 #print(X)
 
 # Fiting out model to the training set
@@ -24,4 +33,3 @@ y_predict = regressor.predict(X_test)
 
 # Visualization
 import matplotlib.pyplot as plt
-plt.scatter(X_test,y_test,color='red')
