@@ -18,12 +18,18 @@ X[:,1:] = imp_mean.transform(X[:,1:])
 #print(X)
 
 # Encoding categorical Data
+from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import LabelEncoder,OneHotEncoder
 le_x = LabelEncoder()
 X[:,0] = le_x.fit_transform(X[:,0])
+print(X[:,0])
+encoder = ColumnTransformer(
+    [('onehotencoder',OneHotEncoder(),[0])],remainder="passthrough"
+)
+X = encoder.fit_transform(X)
 le_y = LabelEncoder()
 Y = le_y.fit_transform(Y)
-#print(X)
+print(X)
 #print(Y)
 
 # Spliting the dataset into train sets and test sets
