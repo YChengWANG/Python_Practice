@@ -33,3 +33,4 @@ y_predict = regressor.predict(X_test)
 
 # Visualization
 import matplotlib.pyplot as plt
+print(np.round(y_predict)-y_test)
